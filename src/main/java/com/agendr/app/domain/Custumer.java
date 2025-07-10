@@ -1,16 +1,10 @@
 package com.agendr.app.domain;
 
-import lombok.*;
 
-import java.util.UUID;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Getter
-@Setter
-@Builder
-public class Custumer {
-
-    private UUID id;
-    private String name;
-    private Contact contact;
+@Table("custumers")
+public record Custumer(@Id Long id, String name, String contact) {
 
 }

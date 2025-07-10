@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS custumers (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name    VARCHAR(255) NOT NULL,
+    contact VARCHAR(255) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS custumers (
+    id      VARCHAR(255) PRIMARY KEY,
+    name    VARCHAR(255) NOT NULL,
+    contact VARCHAR(255) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS custumers (
+    id      CHAR(36) PRIMARY KEY,
+    name    VARCHAR(255) NOT NULL,
+    contact VARCHAR(255) NOT NULL
+);

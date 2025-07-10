@@ -2,30 +2,40 @@ package com.agendr.app.controller;
 
 import com.agendr.app.domain.Custumer;
 import com.agendr.app.facade.CustumerFacade;
-import com.agendr.app.response.CustumerResponse;
+import com.agendr.app.repository.CustumerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = {"/v1/custumer"})
+@RequestMapping("/v1/custumers")
 public class CustumerController {
 
     private final CustumerFacade custumerFacade;
+    private final CustumerRepository custumerRepository;
 
-    @PostMapping(value = {"/save"})
-    public ResponseEntity<UUID> saveCustumer(@RequestBody final Custumer custumer) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(custumerFacade.save(custumer));
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Custumer create(@RequestBody Custumer custumer) {
+        return custumerRepository.save(custumer);
     }
 
-    //TODO getById
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Iterable<Custumer> list() {
+        return custumerRepository.findAll();
+    }
+
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Custumer> findById(@PathVariable final Long id) {
+        return custumerRepository.findById(id);
+    }
+
 
     //TODO updateById
 
