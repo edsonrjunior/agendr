@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -37,9 +38,22 @@ public class CustumerController {
     }
 
 
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete (@PathVariable final Long id){
+        custumerRepository.deleteById(id);
+    }
+
+    @GetMapping("/contact/{contact}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Custumer> findByContact (@PathVariable final String contact){
+        return custumerRepository.findByContact(contact);
+    }
+
+
+
     //TODO updateById
 
-    //TODO delete
 
     //TODO search
 
